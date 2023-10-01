@@ -16,13 +16,14 @@
 
 3. Mittlerer Kalender
   Der Mittlere Kalender fügt folgende Features zum kleinen Kalender hinzu:
-  - Begrüßung mit Namen angepasst an die Uhrzeit (Setup benötigt)
-  - 4 Events, statt 3, werden Angezeigt
+    - Begrüßung mit Namen angepasst an die Uhrzeit (Setup benötigt)
+    - 4 Events, statt 3, werden Angezeigt
 
 4. Großer Kalender
   Der Große Kalender fügt folgende Features zum mittlern Kalender hinzu:
-  - 13 Events, statt 4, werden angezeigt
-  - Wenn genug Platz vorhanden ist werden die Events des nächsten Tages zusätzlich angezeigt
+    - 13 Events, statt 4, werden angezeigt
+    - Wenn genug Platz vorhanden ist werden die Events des nächsten Tages zusätzlich angezeigt
+
 
   Viel Spaß!!!!!
   
