@@ -1,12 +1,12 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-brown; icon-glyph: calendar-alt;
-const TEST_MODE = false
+const TEST_MODE = true
 
 const CALENDAR_URL = "" 
 
 const YOUR_NAME = "Please Set"
-const VISIBLE_CALENDARS = ["Privat"]
+const VISIBLE_CALENDARS = ["Privat", "Schule", "Freizeit", "Kirche", "Orchester", "Family", "Spezial"]
 const NUM_ITEMS_TO_SHOW = 4 // 4 is the max without it being cramped
 const NO_ITEMS_MESSAGE = "Enjoy it." // what's displayed when you have no items for the day
 
@@ -18,7 +18,14 @@ const ITEM_TIME_COLOR = new Color("#eeeeee")
 
 const CALENDAR_COLORS = {
     "Privat": Color.blue(),
-    "Deutsche Feiertage": Color.green()
+    "Freizeit": Color.blue(),
+    "Kirche": new Color("#e67c73"), // flamingo
+    "Orchester": Color.yellow(),
+    "Schule": Color.red(),
+    "Family": Color.purple(),
+    "Spezial": Color.orange(),
+    "Deutsche Feiertage": Color.green(),
+    "Geburtstage": Color.cyan()
 }
 
 const GREETING_SIZE = 16
@@ -35,12 +42,13 @@ if (!config.runsInWidget && !TEST_MODE) {
     const callback = new CallbackURL(CALENDAR_URL + timestamp)
     callback.open()
     Script.complete()
-} else { 
+} 
+else { 
     let itemsToShow = []
 
     const events = await CalendarEvent.today([])
     for (const event of events) {
-        if (event.endDate.getTime() > NOW.getTime()) {
+        if (event.endDate.getTime() > NOW.getTime() && event.calendar.title != "Ferien") {
             let includesTime = false
             if (!event.isAllDay) {
                 includesTime = true
@@ -151,9 +159,9 @@ function getGreeting() {
     let greeting = "Gute"
     if (NOW.getHours() < 6) {
         greeting = greeting + " Nacht, "
-    } else if (NOW.getHours() < 12) {
+    } else if (NOW.getHours() < 10) {
         greeting = greeting + "n Morgen, "
-    } else if (NOW.getHours() < 17) {
+    } else if (NOW.getHours() < 19) {
         greeting = "Hi, " 
     } else if (NOW.getHours() < 21) {
         greeting = greeting + "n Abend, "
@@ -178,6 +186,9 @@ function sortItems(first, second) {
 function formatItemDate(item) {
     DATE_FORMATTER.dateFormat = "hh:mma"
     if (item.dateIncludesTime === true) {
+        if (item.startDate <= NOW){
+            return "JETZT  "
+        }
         return DATE_FORMATTER.string(item.startDate) // always 7 chars
     } else {
         return "HEUTE  "
@@ -189,11 +200,7 @@ function formatItemName(item) {
 }
 
 function formatItemPrefix(item) {
-    if (item.isReminder === false) {
-        return "▐ "
-    } else {
-        return "▐ "
-    }
+    return "▐ "
 }
 
 function getItemUrl(item) {
@@ -202,9 +209,5 @@ function getItemUrl(item) {
 
 
 function getItemColor(item) {
-    if (item.isReminder === true) {
-        return REMINDER_COLORS[item.calendarTitle]
-    } else {
-        return CALENDAR_COLORS[item.calendarTitle]
-    }
+    return CALENDAR_COLORS[item.calendarTitle]
 }

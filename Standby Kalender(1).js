@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-brown; icon-glyph: calendar-alt;
-const TEST_MODE = false
+const TEST_MODE = true
 
 const CALENDAR_URL = ""
 
@@ -16,13 +16,14 @@ const ITEM_TIME_COLOR = new Color("#eeeeee")
 
 const CALENDAR_COLORS = {
     "Privat": Color.blue(),
-    "Freizeit": new Color("#3f51b5"), // blueberry
+    "Freizeit": Color.blue(),
     "Kirche": new Color("#e67c73"), // flamingo
     "Orchester": Color.yellow(),
     "Schule": Color.red(),
     "Family": Color.purple(),
     "Spezial": Color.orange(),
-    "Deutsche Feiertage": Color.green()
+    "Deutsche Feiertage": Color.green(),
+    "Geburtstage": Color.cyan()
 }
 
 const DATE_SIZE = 16
@@ -44,7 +45,7 @@ else {
 
     const events = await CalendarEvent.today([])
     for (const event of events) {
-        if (event.endDate.getTime() > NOW.getTime()) {
+        if (event.endDate.getTime() > NOW.getTime() && event.calendar.title != "Ferien") {
             let includesTime = false
             if (!event.isAllDay) {
                 includesTime = true
@@ -126,18 +127,18 @@ function sortItems(first, second) {
 
 function formatItemDate(item) {
     if (item.dateIncludesTime === true) {
-        if (item.isReminder === false) {
+        if (item.startDate <= NOW){
+            DATE_FORMATTER.dateFormat = "hh:mma"
+            let endDate = DATE_FORMATTER.string(item.endDate)
+            return "▐  Bis " + endDate
+        } else {
             DATE_FORMATTER.dateFormat = "hh:mm"
             let startDate = DATE_FORMATTER.string(item.startDate)
             DATE_FORMATTER.dateFormat = "hh:mma"
             let endDate = DATE_FORMATTER.string(item.endDate)
-            return "▐  " + startDate + "—" + endDate
-        } else {
-            DATE_FORMATTER.dateFormat = "hh:mma"
-            let startDate = DATE_FORMATTER.string(item.startDate)
-            return "▐  " + startDate
+            return "▐  " + startDate + " — " + endDate
         }
-    }
+    } 
     else {
         return "▐  Ganztägig"
     }
