@@ -15,7 +15,7 @@ const NOW = new Date()
 
 const Gruessen = importModule('Gruessen')
 
-let gruesseNiklas = new Gruessen("Herr Keim", "Niklas")
+let gruesseNiklas = new Gruessen("", "Niklas")
 
 if (!config.runsInWidget && !TEST_MODE) {
     const appleDate = new Date('2001/01/01')
