@@ -1,21 +1,22 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-brown; icon-glyph: calendar-alt;
-const TEST_MODE = true
+const VKal = importModule("Variables_Kal")
+const Gruessen = importModule('Gruessen')
+const V = new VKal()
+const gruessen = new Gruessen("", V.YOUR_NAME)
 
-const CALENDAR_URL = ""
+const TEST_MODE = V.TEST_MODE
 
-const VISIBLE_CALENDARS = ["Privat", "Schule", "Freizeit", "Kirche", "Orchester", "Family", "Spezial"]
+const CALENDAR_URL = V.CALENDAR_URL
+
+const VISIBLE_CALENDARS = V.VISIBLE_CALENDARS
 const NUM_ITEMS_TO_SHOW = 1 // 1 is the max without it being cramped
-const NO_ITEMS_MESSAGE = "Enjoy it." // what's displayed when you have no items for the day
-const ITEM_NAME_SIZE = 14
+const NO_ITEMS_MESSAGE = V.NO_ITEMS_MESSAGE
+const ITEM_NAME_SIZE = V.ITEM_NAME_SIZE
 
 const DATE_FORMATTER = new DateFormatter()
 const NOW = new Date()
-
-const Gruessen = importModule('Gruessen')
-
-let gruesseNiklas = new Gruessen("", "Niklas")
 
 if (!config.runsInWidget && !TEST_MODE) {
     const appleDate = new Date('2001/01/01')
@@ -28,7 +29,7 @@ if (!config.runsInWidget && !TEST_MODE) {
 
     const events = await CalendarEvent.today([])
     for (const event of events) {
-        if (event.isAllDay) {
+        if (event.isAllDay && event.calendar.title != "Ferien") {
             itemsToShow.push({
                 id: event.identifier,
                 name: event.title,
@@ -38,7 +39,7 @@ if (!config.runsInWidget && !TEST_MODE) {
 
     itemsToShow.push({
         id: "Hi",
-        name: gruesseNiklas.informellGruessen()
+        name: gruessen.informellGruessen()
     })
 
     let divisor = 60 / itemsToShow.length

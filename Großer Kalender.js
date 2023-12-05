@@ -1,38 +1,29 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-brown; icon-glyph: calendar-alt;
-const TEST_MODE = true
+const VKal = importModule("Variables_Kal")
+const V = new VKal()
 
-const CALENDAR_URL = "" 
+const TEST_MODE = V.TEST_MODE
 
-const YOUR_NAME = "Please Set"
-const VISIBLE_CALENDARS = ["Privat", "Schule", "Freizeit", "Kirche", "Orchester", "Family", "Spezial"]
+const CALENDAR_URL = V.CALENDAR_URL
+
+const YOUR_NAME = V.YOUR_NAME
+const VISIBLE_CALENDARS = V.VISIBLE_CALENDARS
 const NUM_ITEMS_TO_SHOW = 13 //13 is the maximum!
-const NO_ITEMS_MESSAGE = "Enjoy it." // what's displayed when you have no items for the day
+const NO_ITEMS_MESSAGE = V.NO_ITEMS_MESSAGE 
 
-const USE_BACKGROUND_IMAGE = true
-const GREETING_COLOR = new Color("#eeeeee")
-const DATE_COLOR = Color.red()
-const ITEM_NAME_COLOR = Color.white()
-const ITEM_TIME_COLOR = new Color("#eeeeee")
+const GREETING_COLOR = V.GREETING_COLOR
+const DATE_COLOR = V.DATE_COLOR
+const ITEM_NAME_COLOR = V.ITEM_NAME_COLOR
+const ITEM_TIME_COLOR = V.ITEM_TIME_COLOR
 
-const CALENDAR_COLORS = {
-    "Privat": Color.blue(),
-    "Freizeit": Color.blue(),
-    "Kirche": new Color("#e67c73"), // flamingo
-    "Orchester": Color.yellow(),
-    "Schule": Color.red(),
-    "Family": Color.purple(),
-    "Spezial": Color.orange(),
-    "Deutsche Feiertage": Color.green(),
-    "Tagwechsel": Color.magenta(),
-    "Geburtstage": Color.cyan()
-}
+const CALENDAR_COLORS = V.CALENDAR_COLORS
 
-const GREETING_SIZE = 16
-const ITEM_NAME_SIZE = 14
-const ITEM_TIME_SIZE = 12
-const ITEM_TIME_FONT = "Menlo-Regular"; 
+const GREETING_SIZE = V.GREETING_SIZE
+const ITEM_NAME_SIZE = V.ITEM_NAME_SIZE
+const ITEM_TIME_SIZE = V.ITEM_TIME_SIZE
+const ITEM_TIME_FONT = V.ITEM_TIME_FONT; 
 
 const DATE_FORMATTER = new DateFormatter()
 const NOW = new Date()
