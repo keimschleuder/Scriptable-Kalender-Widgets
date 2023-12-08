@@ -56,12 +56,7 @@ if (!config.runsInWidget && !TEST_MODE) {
             
         let itemDate = widget.addText(formatItemDate(item))
         itemDate.font = Font.mediumSystemFont(ITEM_TIME_SIZE)
-    } else { // If there are no more items today
-        // No events found:
-        let message = widget.addText(NO_ITEMS_MESSAGE)
-        message.font = Font.lightSystemFont(ITEM_NAME_SIZE)  
-    }
-
+    } 
     // Finalize widget settings
     widget.setPadding(12, 12, 12, 0)
     widget.spacing = -3
