@@ -112,7 +112,7 @@ if (!config.runsInWidget && !TEST_MODE) {
     widget.addSpacer()
 
     // If there is at least one item today
-    if (itemsToShow.length > 0) {
+    if (itemsToShow.length > 1) {
         // Add a darker overlay
         let gradient = new LinearGradient()
         gradient.colors = [new Color("#000000", 0.75), new Color("#000000", 0.15)]
@@ -147,13 +147,11 @@ if (!config.runsInWidget && !TEST_MODE) {
             itemName.textColor = ITEM_NAME_COLOR
         }
     } else { // If there are no more items today
-        if (USE_BACKGROUND_IMAGE === true) {
-            // Add a more minimal overlay
-            let gradient = new LinearGradient()
-            gradient.colors = [new Color("#000000", 0.5), new Color("#000000", 0)]
-            gradient.locations = [0, 0.5]
-            widget.backgroundGradient = gradient
-        }
+        // Add a more minimal overlay
+        let gradient = new LinearGradient()
+        gradient.colors = [new Color("#000000", 0.5), new Color("#000000", 0)]
+        gradient.locations = [0, 0.5]
+        widget.backgroundGradient = gradient
         
         // No events found:
         let message = widget.addText(NO_ITEMS_MESSAGE)
