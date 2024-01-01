@@ -30,17 +30,32 @@ if (!config.runsInWidget && !TEST_MODE) {
     const events = await CalendarEvent.today([])
     for (const event of events) {
         if (event.isAllDay && event.calendar.title != "Ferien") {
+            let title = event.title
+            if (event.calendar.title == "Geburtstage") {
+                let index = title.lastIndexOf("(")
+                let name = title.slice(0, index - 1)
+                let age = title.slice(index + 1, -1)
+                if (age == "Geburtstag") {
+                    title = name + " hat Geburtstag"
+                }
+                else {
+                    age = age.slice(0, age.indexOf("Geburtstag") - 2)
+                    title = name + " wird " + age
+                }
+            }
             itemsToShow.push({
                 id: event.identifier,
-                name: event.title,
+                name: title,
             })
         }
     }
 
-    itemsToShow.push({
-        id: "Hi",
-        name: gruessen.informellGruessen()
-    })
+    if (itemsToShow.length == 0){
+        itemsToShow.push({
+            id: "Hi",
+            name: gruessen.informellGruessen()
+        })
+    }
 
     let divisor = 60 / itemsToShow.length
     let dividend = NOW.getMinutes()
@@ -57,15 +72,9 @@ if (!config.runsInWidget && !TEST_MODE) {
 
     // If there is at least one item today
 
-    if (itemsToShow.length > 0) {
-        let itemName = widget.addText(item.name)
-        itemName.font = Font.semiboldSystemFont(ITEM_NAME_SIZE)
-    } else { // If there are no more items today
-        // No events found:
-        let message = widget.addText(NO_ITEMS_MESSAGE)
-        message.font = Font.lightSystemFont(ITEM_NAME_SIZE)  
-    }
-
+    let itemName = widget.addText(item.name)
+    itemName.font = Font.semiboldSystemFont(ITEM_NAME_SIZE)
+    
     // Finalize widget settings
     widget.setPadding(12, 12, 12, 0)
     widget.spacing = -3
