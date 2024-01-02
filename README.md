@@ -39,6 +39,4 @@
 
 ## Abhängigkeiten
 
-  Mein Deutsches Begrüßungs Skript wird im Skript "Ganztägige Events" importiert, vielleicht in Zukunft auch in den mittleren und großen Kalender...
-
-  <https://github.com/keimschleuder/Scriptable_Begruessung_Deutsch>
+  Mein Deutsches [Begrüßungs Skript](https://github.com/keimschleuder/Scriptable_Begruessung_Deutsch) wird im Skript "Ganztägige Events" importiert, vielleicht in Zukunft auch in den mittleren und großen Kalender...  
