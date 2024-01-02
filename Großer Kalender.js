@@ -59,7 +59,7 @@ if (!config.runsInWidget && !TEST_MODE) {
             }
             itemsToShow.push({
                 id: event.identifier,
-                name: event.title,
+                name: title,
                 startDate: event.startDate,
                 endDate: event.endDate,
                 dateIncludesTime: includesTime,
@@ -80,9 +80,22 @@ if (!config.runsInWidget && !TEST_MODE) {
                 if (!event.isAllDay) {
                     includesTime = "true"
                 }
+                let title = event.title
+                if (event.calendar.title == "Geburtstage") {
+                    let index = title.lastIndexOf("(")
+                    let name = title.slice(0, index - 1)
+                    let age = title.slice(index + 1, -1)
+                    if (age == "Geburtstag") {
+                        title = name + " hat Geburtstag"
+                    }
+                    else {
+                        age = age.slice(0, age.indexOf("Geburtstag") - 2)
+                        title = name + " wird " + age
+                    }
+                }
                 itemsToShow.push({
                     id: event.identifier,
-                    name: event.title,
+                    name: title,
                     startDate: event.startDate,
                     endDate: event.endDate,
                     dateIncludesTime: includesTime,

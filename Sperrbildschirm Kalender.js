@@ -31,19 +31,6 @@ if (!config.runsInWidget && !TEST_MODE) {
     for (const event of events) {
         if (event.endDate.getTime() > NOW.getTime() && event.calendar.title != "Ferien" && !event.isAllDay) {
             let includesTime = false
-            let title = event.title
-            if (event.calendar.title == "Geburtstage") {
-                let index = title.lastIndexOf("(")
-                let name = title.slice(0, index - 1)
-                let age = title.slice(index + 1, -1)
-                if (age == "Geburtstag") {
-                    title = name + " hat Geburtstag"
-                }
-                else {
-                    age = age.slice(0, age.indexOf("Geburtstag") - 2)
-                    title = name + " wird " + age
-                }
-            }
             itemsToShow.push({
                 id: event.identifier,
                 name: event.title,

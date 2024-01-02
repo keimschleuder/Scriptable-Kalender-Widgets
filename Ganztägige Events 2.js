@@ -43,7 +43,7 @@ if (!config.runsInWidget && !TEST_MODE) {
             }
             itemsToShow.push({
                 id: event.identifier,
-                name: event.title,
+                name: title,
             })
         }
     }
