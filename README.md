@@ -12,18 +12,18 @@
   Das Widget Sperrbildschirm Kalender zeigt 1 Event an, jedoch keine ganztägigen Events.
   Dafür gibt es nämlich das Widget Ganztägige Events, welches für die Kopfzeile des Homebildschirms gemacht ist.
   Es zeigt nur ganztägige Events an. Es begrüßt den Nutzer.
-  
-  Die zwei unterschiedlichen Scripts "Ganztägige Events.js" und "Ganztägige Events2.js" unterscheiden sich in der "NoItemsMessage".
+
+    Die zwei unterschiedlichen Scripts "Ganztägige Events.js" und "Ganztägige Events2.js" unterscheiden sich in der "NoItemsMessage".
   Ohne Events zeigt "Ganztägige Events.js" eine Tageszeitabhängige BEgrüßung, während "Ganztägige Events2.js" den aktuellen Monat anzeigt.
 
-2. Kleiner Kalender
+3. Kleiner Kalender
   Der Kleine Kalender zeigt den aktuellen Wochentag und den Tag an (z.B. "Montag 1")
   Außerdem zeigt das Widget die nächsten drei Kalenderei träge an.
 
-3. Standby Kalender
+4. Standby Kalender
   Der Standby Kalender ähnelt stark dem Kleinen Kalender, der Hintergrund ist allerdings kein Bild, sondern schwarz
 
-4. Mittlerer Kalender
+5. Mittlerer Kalender
   Der Mittlere Kalender fügt folgende Features zum kleinen Kalender hinzu:
 
 - Begrüßung mit Namen angepasst an die Uhrzeit (Setup benötigt)
