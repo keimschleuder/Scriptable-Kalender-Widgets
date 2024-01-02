@@ -68,7 +68,13 @@ if (!config.runsInWidget && !TEST_MODE) {
         }
     }
     const eventsTomorrow = await CalendarEvent.tomorrow([])
-    if (itemsToShow.length <= NUM_ITEMS_TO_SHOW - 2) {
+    let pushTomorrow = false
+    if (eventsTomorrow.length == 1 && eventsTomorrow[0].calendar.title != "Ferien") {
+        pushTomorrow = true
+    } else if (eventsTomorrow.length > 1) {
+        pushTomorrow = true
+    }
+    if (itemsToShow.length <= NUM_ITEMS_TO_SHOW - 2 && pushTomorrow) {
         itemsToShow.push({
             name: "Morgen",
             dateIncludesTime: "No",
@@ -138,7 +144,7 @@ if (!config.runsInWidget && !TEST_MODE) {
     widget.addSpacer()
 
     // If there is at least one item today
-    if (itemsToShow.length > 1) {
+    if (itemsToShow.length > 0) {
         // Add a darker overlay
         let gradient = new LinearGradient()
         gradient.colors = [new Color("#000000", 0.75), new Color("#000000", 0.15)]
