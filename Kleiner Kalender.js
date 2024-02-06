@@ -3,7 +3,7 @@
 // icon-color: light-brown; icon-glyph: calendar-alt;
 const VKal = importModule("Variables_Kal")
 const V = new VKal()
-
+ 
 const TEST_MODE = V.TEST_MODE
 
 const CALENDAR_URL = V.CALENDAR_URL
@@ -24,6 +24,8 @@ const ITEM_TIME_SIZE = V.ITEM_TIME_SIZE
 
 const DATE_FORMATTER = new DateFormatter()
 const NOW = new Date()
+const MIDNIGHT = new Date()
+MIDNIGHT.setHours(24,0,0,0)
 
 if (!config.runsInWidget && !TEST_MODE) {
     const appleDate = new Date('2001/01/01')
@@ -146,10 +148,12 @@ function sortItems(first, second) {
 
 function formatItemDate(item) {
     if (item.dateIncludesTime === true) {
-        if (item.startDate <= NOW){
+        if (item.startDate <= NOW && item.endDate <= MIDNIGHT){
             DATE_FORMATTER.dateFormat = "hh:mma"
             let endDate = DATE_FORMATTER.string(item.endDate)
             return "▐  Bis " + endDate
+        } else if (item.startDate <= NOW && item.endDate >= MIDNIGHT) {
+            return "▐  Jetzt"
         } else {
             DATE_FORMATTER.dateFormat = "hh:mm"
             let startDate = DATE_FORMATTER.string(item.startDate)
