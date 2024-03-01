@@ -14,7 +14,8 @@
   Dafür gibt es nämlich das Widget Ganztägige Events, welches für die Kopfzeile des Homebildschirms gemacht ist.
   Es zeigt nur ganztägige Events an. Es begrüßt den Nutzer.
 
-    Die zwei unterschiedlichen Scripts "Ganztägige Events.js" und "Ganztägige Events2.js" unterscheiden sich in der "NoItemsMessage".
+  >Die zwei unterschiedlichen Scripts "Ganztägige Events.js" und "Ganztägige Events2.js" unterscheiden sich in der "NoItemsMessage".
+
   Ohne Events zeigt "Ganztägige Events.js" eine Tageszeitabhängige BEgrüßung, während "Ganztägige Events2.js" den aktuellen Monat anzeigt.
 
 3. **Kleiner Kalender**
